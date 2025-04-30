@@ -30,3 +30,10 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
+          volumeMounts:
+            - name: public-folder
+              mountPath: /app/public
+      volumes:
+        - name: public-folder
+          persistentVolumeClaim:
+            claimName: public-pvc

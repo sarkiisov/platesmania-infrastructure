@@ -9,6 +9,7 @@ resources:
   - backend/backend-service.yaml
   - backend/backend-secret.yaml
   - backend/backend-hpa.yaml
+  - backend/backend-public-pvc.yaml
   - postgres/postgres-deployment.yaml
   - postgres/postgres-service.yaml
   - postgres/postgres-secret.yaml
