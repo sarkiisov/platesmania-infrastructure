@@ -8,8 +8,23 @@ resources:
   - backend/backend-deployment.yaml
   - backend/backend-service.yaml
   - backend/backend-secret.yaml
+  - backend/backend-hpa.yaml
   - postgres/postgres-deployment.yaml
   - postgres/postgres-service.yaml
   - postgres/postgres-secret.yaml
   - postgres/postgres-pvc.yaml
   - postgres/postgres-init-configmap.yaml
+  - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+patches:
+  - target:
+      kind: Deployment
+      name: metrics-server
+      namespace: kube-system
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --kubelet-insecure-tls
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --kubelet-preferred-address-types=InternalIP
