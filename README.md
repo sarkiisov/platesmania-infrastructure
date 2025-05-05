@@ -1,5 +1,7 @@
 # Platesmania infrastructure
 
+Configuration of a local Kubernetes cluster for orchestrating Platesmania services
+
 ## Requirements
 
 - Minikube
