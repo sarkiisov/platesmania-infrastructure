@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-exporter
+  labels:
+    app: postgres-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-exporter
+  template:
+    metadata:
+      labels:
+        app: postgres-exporter
+    spec:
+      containers:
+        - name: postgres-exporter
+          image: wrouesnel/postgres_exporter:latest
+          ports:
+            - name: http
+              containerPort: 9187
+          env:
+            - name: DATA_SOURCE_NAME
+              value: postgres://postgres:root@postgres-service:5432/plates?sslmode=disable
