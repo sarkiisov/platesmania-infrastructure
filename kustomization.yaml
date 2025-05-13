@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - frontend/frontend-deployment.yaml
   - frontend/frontend-service.yaml
@@ -10,13 +9,16 @@ resources:
   - backend/backend-secret.yaml
   - backend/backend-hpa.yaml
   - backend/backend-public-pvc.yaml
+  - backend/backend-service-monitor.yaml
   - postgres/postgres-deployment.yaml
   - postgres/postgres-service.yaml
   - postgres/postgres-secret.yaml
   - postgres/postgres-pvc.yaml
   - postgres/postgres-init-configmap.yaml
+  - daemon/daemon-configmap.yaml
+  - daemon/daemon-cronjob.yaml
+  - daemon/daemon-rbac.yaml
   - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-
 patches:
   - target:
       kind: Deployment

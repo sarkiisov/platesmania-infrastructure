@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daemon-cronjob
+  namespace: default
+spec:
+  schedule: "* * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: restart-deployment-sa
+          restartPolicy: Never
+          containers:
+            - name: restart-check
+              image: sarkiisov/kubectl:latest
+              command: ["/bin/sh", "/scripts/check-and-restart.sh"]
+              volumeMounts:
+                - name: script-volume
+                  mountPath: /scripts
+                  readOnly: true
+          volumes:
+            - name: script-volume
+              configMap:
+                name: daemon-script
+                defaultMode: 0755
