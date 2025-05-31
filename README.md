@@ -26,3 +26,9 @@ Apply all manifests: `make apply-all`
 Restart a deployment: `make restart target=frontend`
 
 Update Kubernetes secret for a service: `make update-secret target=frontend`
+
+## Linked projects
+
+[platesmania-frontend](https://github.com/sarkiisov/platesmania-frontend)
+
+[platesmania-backend](https://github.com/EgorVelikiy/devops-server)
