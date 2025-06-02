@@ -15,9 +15,6 @@ resources:
   - postgres/postgres-secret.yaml
   - postgres/postgres-pvc.yaml
   - postgres/postgres-init-configmap.yaml
-  - daemon/daemon-configmap.yaml
-  - daemon/daemon-cronjob.yaml
-  - daemon/daemon-rbac.yaml
   - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 patches:
   - target:
